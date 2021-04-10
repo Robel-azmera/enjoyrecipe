@@ -34,7 +34,7 @@ dependencies:
   meta: ^1.2.4
   flutter_bloc: ^6.1.2
   shared_preferences: ^0.5.12+4
-  keyboard_utils: ^1.1.0
+  # keyboard_utils: ^1.1.0
   
 
 dev_dependencies:

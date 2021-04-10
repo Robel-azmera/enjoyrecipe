@@ -81,7 +81,7 @@ class UserProvider {
     print("In sign in method");
     if (response.statusCode == 200) {
       User user = User.fromJson(jsonDecode(response.body)["Users"][0]);
-      print('${user.fullName}');
+      // print('${user.fullName}');
       if (user.password == password) return user;
       throw Exception("Wrong Credential");
     }
@@ -107,7 +107,7 @@ class UserProvider {
     );
     print(response.statusCode);
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     }
     throw Exception("Error creating user");

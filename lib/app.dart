@@ -1,5 +1,7 @@
 // File defines app wide settings and themes
 
+import 'package:enjoyrecipe/Recipe/bloc/bloc.dart';
+import 'package:enjoyrecipe/Recipe/recipe.dart';
 import 'package:enjoyrecipe/on_generate_router.dart';
 import 'package:enjoyrecipe/routes.dart';
 import 'package:enjoyrecipe/user/bloc/bloc.dart';
@@ -13,8 +15,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class EnjoyRecipe extends StatelessWidget {
   // final ItemRepository itemRepository;
   final UserRepository userRepository;
+  final RecipeRepository recipeRepository;
 
-  EnjoyRecipe({@required this.userRepository}) : assert(userRepository != null);
+  EnjoyRecipe({@required this.userRepository, @required this.recipeRepository})
+      : assert(userRepository != null),
+        assert(recipeRepository != null);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +28,9 @@ class EnjoyRecipe extends StatelessWidget {
       child: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => UserBloc(this.userRepository)),
+            BlocProvider(
+                create: (context) =>
+                    RecipeBloc(dataRepository: this.recipeRepository)),
           ],
           child: MaterialApp(
             theme: ThemeData(
@@ -31,6 +39,7 @@ class EnjoyRecipe extends StatelessWidget {
             ),
             debugShowCheckedModeBanner: false,
             initialRoute: LOGIN,
+            // initialRoute: RECIPE_ADD_UPDATE,
             onGenerateRoute: OnGenerateRouter.onGenerateRouter,
           )),
     );
