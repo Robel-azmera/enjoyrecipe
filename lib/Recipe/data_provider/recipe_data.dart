@@ -28,9 +28,10 @@ class RecipeDataProvider {
       }),
     );
 
+    // print(response.body);
     if (response.statusCode == 200) {
-      Recipe recipe = Recipe.fromJson(jsonDecode(response.body)["recipe"][0]);
-      return recipe;
+      return Recipe.fromJson(
+          jsonDecode(response.body)["insert_recipe"]["returning"][0]);
       // return Recipe.fromJson(jsonDecode(response.body)["recipe"]);
     } else {
       throw Exception('Failed to create Recipe . . . !');
@@ -48,7 +49,7 @@ class RecipeDataProvider {
     );
 
     if (response.statusCode == 200) {
-      final recipies = jsonDecode(response.body) as List;
+      final recipies = jsonDecode(response.body)["recipe"] as List;
       return recipies.map((recipe) => Recipe.fromJson(recipe)).toList();
     } else {
       throw Exception('Failed to load Recipies . . . !');
