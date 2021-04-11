@@ -11,6 +11,8 @@ class UserSuccessfullySignedIn extends UserState {
   UserSuccessfullySignedIn(this.user);
 }
 
+// class UserSuccessfullyRegistered extends UserState {}
+
 class UserSuccessfullySignedOut extends UserState {}
 
 class UserFailedToSignIn extends UserState {}

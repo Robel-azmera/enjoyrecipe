@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
     return WillPopScope(
       onWillPop: () => SystemNavigator.pop(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
         body: BlocListener<UserBloc, UserState>(
           listener: (context, userState) async {
             if (userState is UserFailedToSignIn ||
@@ -34,26 +34,29 @@ class _LoginPageState extends State<LoginPage> {
             }
           },
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Column(
-                children: [
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       child: Image.asset(
-                  //         'assets/images/recipe.png',
-                  //         width: 300,
-                  //         height: 300,
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
-                  // flutFoodLogo,
-                  Expanded(
-                    child: LoginContainer(),
-                  ),
-                ],
+            child: Scaffold(
+              backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+              body: Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Column(
+                  children: [
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Image.asset(
+                    //         'assets/images/recipe.png',
+                    //         width: 300,
+                    //         height: 300,
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
+                    // flutFoodLogo,
+                    Expanded(
+                      child: LoginContainer(),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

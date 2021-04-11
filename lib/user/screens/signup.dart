@@ -15,6 +15,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       body: BlocListener<UserBloc, UserState>(
         listener: (context, userState) async {
           print("In Bloc listener");
@@ -28,15 +29,18 @@ class _SignupPageState extends State<SignupPage> {
           }
         },
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Column(
-              children: [
-                // flutFoodLogo,
-                Expanded(
-                  child: SignupContainer(),
-                )
-              ],
+          child: Scaffold(
+            backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+            body: Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Column(
+                children: [
+                  // flutFoodLogo,
+                  Expanded(
+                    child: SignupContainer(),
+                  )
+                ],
+              ),
             ),
           ),
         ),

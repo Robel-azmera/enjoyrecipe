@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:enjoyrecipe/api_config_files.dart';
+import 'package:enjoyrecipe/main.dart';
 import 'package:enjoyrecipe/user/model/models.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,7 +59,7 @@ class UserProvider {
     );
     print(response.statusCode);
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     }
     throw Exception("Error creating user");
@@ -97,21 +98,39 @@ class UserProvider {
             'gaiZAFZVjJ6tYXbl9ueMkhr3s7vpCO1yl5snWkfE9gKpWY8BlNahekMKNAxoCrZQ'
       },
       body: jsonEncode(<String, dynamic>{
-        // "username": user.userName,
-        // "phone": user.phone,
-
         "email": user.email,
         "fullname": user.fullName,
         "password": user.password
       }),
     );
-    print(response.statusCode);
 
     if (response.statusCode == 200) {
-      return User.fromJson(jsonDecode(response.body));
+      print(jsonDecode(response.body)["insert_Users"]['returning'][0]);
+      return User.fromJson(jsonDecode(response.body)["insert_Users"]['returning'][0]);
     }
     throw Exception("Error creating user");
   }
+
+  // Future<User> createUser(User user) async {
+  //   final response = await httpClient.post(
+  //     "$baseURL/api/rest/user/register",
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //       'x-hasura-admin-secret':
+  //           'gaiZAFZVjJ6tYXbl9ueMkhr3s7vpCO1yl5snWkfE9gKpWY8BlNahekMKNAxoCrZQ'
+  //     },
+  //     body: jsonEncode(<String, dynamic>{
+  //       "email": user.email,
+  //       "fullname": user.fullName,
+  //       "password": user.password
+  //     }),
+  //   );
+
+  //   if (response.statusCode == 200) {
+  //     return User.fromJson(jsonDecode(response.body)["insert_Users"]);
+  //   }
+  //   throw Exception("Error creating user");
+  // }
 
   Future<void> updateUser(User user) async {
     final response = await this.httpClient.put(
@@ -141,5 +160,29 @@ class UserProvider {
     if (response.statusCode != 204) {
       throw Exception("Error deleting user");
     }
+  }
+
+  Future<User> getmyUser(int id) async {
+    print("$baseURL/api/rest/user/byemail");
+
+    final response = await this.httpClient.post(
+          "$baseURL/api/rest/user/byid",
+          headers: <String, String>{
+            'x-hasura-admin-secret':
+                'gaiZAFZVjJ6tYXbl9ueMkhr3s7vpCO1yl5snWkfE9gKpWY8BlNahekMKNAxoCrZQ'
+          },
+          body: jsonEncode(<String, dynamic>{
+            "id": id,
+          }),
+        );
+
+    print("getting user . .  .");
+    if (response.statusCode == 200) {
+      return User.fromJson(jsonDecode(response.body)["Users"][0]);
+      // print('${user.fullName}');
+      // if (user.password == password) return user;
+      // throw Exception("Wrong Credential");
+    }
+    throw Exception("Error Finding user in user");
   }
 }

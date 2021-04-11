@@ -36,17 +36,18 @@ class _LoginContainerState extends State<LoginContainer> {
             children: [
               Row(
                 children: [
+                  SizedBox(
+                    height: 30,
+                  ),
                   Expanded(
                     child: Image.asset(
-                      'assets/images/recipe.png',
-                      width: 300,
-                      height: 300,
+                      'assets/images/food.png',
+                      alignment: Alignment.center,
+                      width: 350,
+                      height: 350,
                     ),
                   )
                 ],
-              ),
-              SizedBox(
-                height: 20,
               ),
               Text(
                 'Login',
@@ -59,28 +60,30 @@ class _LoginContainerState extends State<LoginContainer> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   validator: (value) {
-                    if (value.isEmpty) return "email can't be left empty";
+                    if (value.isEmpty) return "Email can't be left empty";
 
                     return null;
                   },
-                  style: kTextFormFieldStyle.copyWith(color: Colors.black54),
+                  style: kTextFormFieldStyle.copyWith(color: Colors.white70),
                   decoration: InputDecoration(
                       labelText: 'Email',
                       hintText: 'Enter Email',
+                      hintStyle: TextStyle(color: Colors.white70),
+                      labelStyle: TextStyle(color: Colors.white70),
                       // floatingLabelBehavior:
                       //         FloatingLabelBehavior.always,
                       // contentPadding: EdgeInsets.symmetric(
                       //   horizontal: 30,
                       //   vertical: 18,
                       // ),
-                      focusColor: Colors.teal,
+                      focusColor: Colors.white30,
                       enabledBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Color(0xFF757575), width: 1.0),
+                            BorderSide(color: Colors.white70, width: 1.0),
                         borderRadius: BorderRadius.all(Radius.circular(28.0)),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal, width: 2.0),
+                        borderSide: BorderSide(color: Colors.white, width: 2.0),
                         borderRadius: BorderRadius.all(Radius.circular(28.0)),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
@@ -95,6 +98,7 @@ class _LoginContainerState extends State<LoginContainer> {
                       ),
                       prefixIcon: Icon(
                         Icons.mail,
+                        color: Colors.white70,
                       )),
                   onChanged: (value) => email = value,
                 ),
@@ -107,17 +111,19 @@ class _LoginContainerState extends State<LoginContainer> {
 
                     return null;
                   },
-                  style: kTextFormFieldStyle.copyWith(color: Colors.black54),
+                  style: kTextFormFieldStyle.copyWith(color: Colors.white70),
                   obscureText: visible ? true : false,
                   decoration: InputDecoration(
                       hintText: 'Enter password',
+                      hintStyle: TextStyle(color: Colors.white70),
+                      labelStyle: TextStyle(color: Colors.white70),
                       enabledBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(color: Color(0xFF757575), width: 1.0),
+                            BorderSide(color: Colors.white70, width: 1.0),
                         borderRadius: BorderRadius.all(Radius.circular(28.0)),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal, width: 2.0),
+                        borderSide: BorderSide(color: Colors.white, width: 2.0),
                         borderRadius: BorderRadius.all(Radius.circular(28.0)),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
@@ -133,9 +139,11 @@ class _LoginContainerState extends State<LoginContainer> {
                       focusColor: Colors.teal,
                       prefixIcon: Icon(
                         Icons.lock,
+                        color: Colors.white70,
                       ),
                       suffixIcon: IconButton(
                           onPressed: toggleVisibility,
+                          color: Colors.white70,
                           icon: visible
                               ? Icon(
                                   Icons.visibility_off,
@@ -166,7 +174,12 @@ class _LoginContainerState extends State<LoginContainer> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?'),
+                  Text(
+                    'Don\'t have an account?',
+                    style: TextStyle(
+                      color: Colors.white70,
+                    ),
+                  ),
                   FlatButton(
                     onPressed: () {
                       Navigator.push(
@@ -176,7 +189,7 @@ class _LoginContainerState extends State<LoginContainer> {
                     },
                     child: Text(
                       'Sign up',
-                      style: TextStyle(color: Colors.teal),
+                      style: TextStyle(color: Colors.teal[200]),
                     ),
                   )
                 ],

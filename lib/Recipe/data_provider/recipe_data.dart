@@ -29,7 +29,9 @@ class RecipeDataProvider {
     );
 
     if (response.statusCode == 200) {
-      return Recipe.fromJson(jsonDecode(response.body)["recipe"]);
+      Recipe recipe = Recipe.fromJson(jsonDecode(response.body)["recipe"][0]);
+      return recipe;
+      // return Recipe.fromJson(jsonDecode(response.body)["recipe"]);
     } else {
       throw Exception('Failed to create Recipe . . . !');
     }

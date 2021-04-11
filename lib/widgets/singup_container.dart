@@ -48,14 +48,14 @@ class _SignupContainerState extends State<SignupContainer> {
                         Text(
                           'ENJOY',
                           style: TextStyle(
-                            color: Colors.teal[700],
+                            color: Colors.teal[400],
                             fontWeight: FontWeight.w600,
                             fontSize: 45,
                           ),
                         ),
                         Text(
                           'Recipe',
-                          style: TextStyle(fontSize: 45),
+                          style: TextStyle(fontSize: 45, color: Colors.white),
                         ),
                       ],
                     )),
@@ -66,7 +66,7 @@ class _SignupContainerState extends State<SignupContainer> {
               Text(
                 'Register',
                 style: TextStyle(
-                  color: Color(0xFF58585A),
+                  color: Colors.white,
                   fontSize: 25,
                   // fontWeight: FontWeight.bold,
                 ),
@@ -85,14 +85,17 @@ class _SignupContainerState extends State<SignupContainer> {
                   style: kTextFormFieldStyle,
                   decoration: InputDecoration(
                     hintText: 'Full Name',
-                    focusColor: Colors.teal,
+                    focusColor: Colors.white30,
                     labelText: 'Full Name',
+                    hintStyle: TextStyle(color: Colors.white70),
+                    labelStyle: TextStyle(color: Colors.white70),
                     prefixIcon: Icon(
-                      Icons.account_circle,
+                      Icons.person,
+                      color: Colors.white70,
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(color: Color(0xFF757575)),
+                      borderSide: BorderSide(color: Colors.white70),
                       gapPadding: 10,
                     ),
                     errorBorder: OutlineInputBorder(
@@ -102,7 +105,7 @@ class _SignupContainerState extends State<SignupContainer> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(color: Colors.teal),
+                      borderSide: BorderSide(color: Colors.white),
                       gapPadding: 10,
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -126,12 +129,15 @@ class _SignupContainerState extends State<SignupContainer> {
                   decoration: InputDecoration(
                     hintText: 'Enter Email',
                     labelText: 'Email',
+                    hintStyle: TextStyle(color: Colors.white70),
+                    labelStyle: TextStyle(color: Colors.white70),
                     prefixIcon: Icon(
-                      Icons.mail,
+                      Icons.mail_outline,
+                      color: Colors.white70,
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(color: Color(0xFF757575)),
+                      borderSide: BorderSide(color: Colors.white70),
                       gapPadding: 10,
                     ),
                     errorBorder: OutlineInputBorder(
@@ -141,7 +147,7 @@ class _SignupContainerState extends State<SignupContainer> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(color: Colors.teal),
+                      borderSide: BorderSide(color: Colors.white),
                       gapPadding: 10,
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -164,13 +170,17 @@ class _SignupContainerState extends State<SignupContainer> {
                   style: kTextFormFieldStyle,
                   obscureText: visible ? true : false,
                   decoration: InputDecoration(
-                    hintText: 'Enter password',
+                    hintText: 'password',
                     labelText: 'Password',
+                    hintStyle: TextStyle(color: Colors.white70),
+                    labelStyle: TextStyle(color: Colors.white70),
                     prefixIcon: Icon(
                       Icons.lock,
+                      color: Colors.white70,
                     ),
                     suffixIcon: IconButton(
                       onPressed: toggleVisibility,
+                      color: Colors.white70,
                       icon: visible
                           ? Icon(
                               Icons.visibility_off,
@@ -181,7 +191,7 @@ class _SignupContainerState extends State<SignupContainer> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(color: Color(0xFF757575)),
+                      borderSide: BorderSide(color: Colors.white70),
                       gapPadding: 10,
                     ),
                     errorBorder: OutlineInputBorder(
@@ -191,7 +201,7 @@ class _SignupContainerState extends State<SignupContainer> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(color: Colors.teal),
+                      borderSide: BorderSide(color: Colors.white),
                       gapPadding: 10,
                     ),
                     focusedErrorBorder: OutlineInputBorder(
@@ -209,7 +219,7 @@ class _SignupContainerState extends State<SignupContainer> {
                 onChanged: (value) {},
                 title: Text(
                   'I Agree to the Terms and Condtions',
-                  style: TextStyle(color: Colors.black45, fontSize: 15),
+                  style: TextStyle(color: Colors.white70, fontSize: 15),
                 ),
               ),
               Padding(
@@ -217,7 +227,7 @@ class _SignupContainerState extends State<SignupContainer> {
                 child: Row(
                   children: [
                     Text('Already have an account?',
-                        style: TextStyle(color: Colors.black45, fontSize: 15)),
+                        style: TextStyle(color: Colors.white70, fontSize: 15)),
                     FlatButton(
                       onPressed: () {
                         Navigator.push(
@@ -227,7 +237,7 @@ class _SignupContainerState extends State<SignupContainer> {
                       },
                       child: Text(
                         'Sign In',
-                        style: TextStyle(color: Colors.teal),
+                        style: TextStyle(color: Colors.teal[300]),
                       ),
                     )
                   ],

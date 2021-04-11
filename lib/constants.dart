@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 
 final kButtonTextStyle = TextStyle(
-  color: Color(0xFF58585A),
+  // color: Color(0xFF58585A),
+  color: Colors.white,
   fontSize: 32,
   fontWeight: FontWeight.w900,
 );
@@ -32,5 +33,5 @@ const kInputFieldDecoration = InputDecoration(
 );
 
 const kTextFormFieldStyle = TextStyle(
-  color: Color(0xFF757575),
+  color: Colors.white70,
 );
