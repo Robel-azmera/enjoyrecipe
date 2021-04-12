@@ -18,7 +18,7 @@ class RecipeDetail extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
-        title: Text('Notice Board'),
+        title: Text('${this.recipe.recipeName}'),
         actions: [
           IconButton(
             icon: Icon(Icons.edit),

@@ -128,16 +128,81 @@ class _RecipeListState extends State<RecipeList> {
             final recipe = state.recipies;
             // print(parties[0].description);///debug
             return ListView.builder(
+              padding: EdgeInsets.only(right: 7, bottom: 10),
               itemCount: recipe.length,
-              itemBuilder: (_, idx) => ListTile(
-                title: Text(
-                  '${recipe[idx].recipeName}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+              itemBuilder: (_, idx) => Card(
+                color: Color.fromRGBO(58, 66, 86, 1.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      contentPadding: EdgeInsets.only(bottom: 20),
+                      leading: new Container(
+                        width: 70.0,
+                        height: 190.0,
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage("assets/images/Pizza-2.jpg"),
+                          ),
+                        ),
+                      ),
+                      title: Text(
+                        '${recipe[idx].recipeName}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                            fontSize: 19),
+                      ),
+                      subtitle: Text(
+                        'Calorie: ${recipe[idx].calories}',
+                        style: TextStyle(color: Colors.white54, fontSize: 14),
+                      ),
+                      onTap: () => Navigator.of(context).pushNamed(
+                          RecipeDetail.routeName,
+                          arguments: recipe[idx]),
+                    ),
+                    // ButtonBar(
+                    //   children: <Widget>[
+                    //     FlatButton(
+                    //       child: const Text(
+                    //         'Details',
+                    //         style: TextStyle(color: Colors.teal),
+                    //       ),
+                    //       onPressed: () {/* ... */},
+                    //     ),
+                    //   ],
+                    // ),
+                  ],
                 ),
-                subtitle: Text('${recipe[idx].instructions}'),
-                onTap: () => Navigator.of(context)
-                    .pushNamed(RecipeDetail.routeName, arguments: recipe[idx]),
               ),
+              // itemBuilder: (_, idx) => ListTile(
+              //   leading: new Container(
+              //     width: 70.0,
+              //     height: 190.0,
+              //     decoration: new BoxDecoration(
+              //       shape: BoxShape.circle,
+              //       image: new DecorationImage(
+              //         fit: BoxFit.fill,
+              //         image: AssetImage("assets/images/Pizza-2.jpg"),
+              //       ),
+              //     ),
+              //   ),
+              //   title: Text(
+              //     '${recipe[idx].recipeName}',
+              //     style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //         color: Colors.teal[100],
+              //         fontSize: 19),
+              //   ),
+              //   subtitle: Text(
+              //     'Calorie: ${recipe[idx].calories}',
+              //     style: TextStyle(color: Colors.white54, fontSize: 15),
+              //   ),
+              //   onTap: () => Navigator.of(context)
+              //       .pushNamed(RecipeDetail.routeName, arguments: recipe[idx]),
+              // ),
             );
           }
 
