@@ -41,8 +41,11 @@ class RecipeDetail extends StatelessWidget {
       ),
       body: Card(
         color: Color.fromRGBO(58, 66, 86, 1.0),
-        child: Column(
+        child: ListView(
           children: [
+            Expanded(
+              child: Image.network("${Uri.parse(this.recipe.image)}"),
+            ),
             ListTile(
               title: Text(
                 'Name: ${this.recipe.recipeName}',

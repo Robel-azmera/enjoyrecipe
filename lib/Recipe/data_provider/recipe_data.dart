@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:enjoyrecipe/Recipe/models/models.dart';
 import 'package:enjoyrecipe/api_config_files.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 

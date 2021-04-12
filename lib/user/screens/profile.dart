@@ -11,16 +11,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-//USER NAME COMMENTED
-
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  String username = "";
+  String email = "";
   String fullname = "";
+  String password = "";
+  String newpass = "";
+  String oldpass = "";
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +30,20 @@ class _ProfilePageState extends State<ProfilePage> {
     User user = userState.user;
     // username = user.userName;
     fullname = user.fullName;
+    email = user.email;
+    password = user.password;
 
     return Scaffold(
+      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
         centerTitle: true,
         title: Text(
           "PROFILE",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.teal,
+            color: Colors.white,
           ),
         ),
         leading: IconButton(
@@ -48,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
           },
           icon: Icon(
             Icons.arrow_back_rounded,
-            color: Colors.teal,
+            color: Colors.white,
           ),
         ),
       ),
@@ -62,10 +66,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.teal,
+                    color: Colors.white12,
                   ),
                   child: Icon(
-                    Icons.person,
+                    Icons.person_outline,
                     size: 100,
                     color: Colors.white,
                   ),
@@ -75,68 +79,116 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Text(
                     "$fullname",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 32,
+                      color: Colors.white,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Form(
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value.isEmpty) return "Email can't be left empty";
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "$email",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                //   child: Form(
+                //     child: TextFormField(
+                //       validator: (value) {
+                //         if (value.isEmpty) return "Can't be left empty";
 
-                        return null;
-                      },
-                      initialValue: username,
-                      style:
-                          kTextFormFieldStyle.copyWith(color: Colors.black54),
-                      decoration: kInputDecoration.copyWith(
-                          hintText: 'Enter Email',
-                          focusColor: Colors.teal,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.teal, width: 1.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.teal, width: 2.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
-                          ),
-                          prefixIcon: Icon(
-                            Icons.mail,
-                            color: Colors.teal,
-                          )),
-                      onChanged: (value) => username = value,
-                    ),
-                  ),
-                ),
+                //         return null;
+                //       },
+                //       initialValue: password,
+                //       style:
+                //           kTextFormFieldStyle.copyWith(color: Colors.white54),
+                //       decoration: kInputDecoration.copyWith(
+                //           hintText: 'Enter Old password',
+                //           labelText: "Old Password",
+                //           focusColor: Colors.teal,
+                //           enabledBorder: OutlineInputBorder(
+                //             borderSide:
+                //                 BorderSide(color: Colors.teal, width: 1.0),
+                //             borderRadius:
+                //                 BorderRadius.all(Radius.circular(32.0)),
+                //           ),
+                //           focusedBorder: OutlineInputBorder(
+                //             borderSide:
+                //                 BorderSide(color: Colors.teal, width: 2.0),
+                //             borderRadius:
+                //                 BorderRadius.all(Radius.circular(32.0)),
+                //           ),
+                //           prefixIcon: Icon(
+                //             Icons.mail,
+                //             color: Colors.teal,
+                //           )),
+                //       // onChanged: (value) => email = value,
+                //       onChanged: (value) => oldpass = value,
+                //     ),
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                //   child: Form(
+                //     child: TextFormField(
+                //       validator: (value) {
+                //         if (value.isEmpty) return "Can't be left empty";
+                //         return null;
+                //       },
+                //       // initialValue: email,
+                //       style:
+                //           kTextFormFieldStyle.copyWith(color: Colors.black54),
+                //       decoration: kInputDecoration.copyWith(
+                //           labelText: "New password",
+                //           hintText: 'Enter New Password',
+                //           focusColor: Colors.teal,
+                //           enabledBorder: OutlineInputBorder(
+                //             borderSide:
+                //                 BorderSide(color: Colors.teal, width: 1.0),
+                //             borderRadius:
+                //                 BorderRadius.all(Radius.circular(32.0)),
+                //           ),
+                //           focusedBorder: OutlineInputBorder(
+                //             borderSide:
+                //                 BorderSide(color: Colors.teal, width: 2.0),
+                //             borderRadius:
+                //                 BorderRadius.all(Radius.circular(32.0)),
+                //           ),
+                //           prefixIcon: Icon(
+                //             Icons.mail,
+                //             color: Colors.teal,
+                //           )),
+                //       onChanged: (value) => newpass = value,
+                //     ),
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                //   child: RoundedButton(
+                //       text: 'UPDATE',
+                //       onPressed: () {
+                //         user.password = newpass;
+                //         BlocProvider.of<UserBloc>(context).add(
+                //           UserUpdate(user),
+                //         );
+                //       },
+                //       color: Colors.teal[700]),
+                // ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: RoundedButton(
-                      text: 'Update',
-                      onPressed: () {
-                        // user.userName = username;
-                        BlocProvider.of<UserBloc>(context).add(
-                          UserUpdate(user),
-                        );
-                      },
-                      color: Colors.teal),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: RoundedButton(
-                      text: 'Sign Out',
+                      text: 'LOG OUT',
                       onPressed: () {
                         BlocProvider.of<UserBloc>(context).add(
                           UserSignOut(),
                         );
                         Navigator.pushNamed(context, LOGIN);
                       },
-                      color: Colors.teal),
+                      color: Colors.teal[700]),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -148,7 +200,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                         Navigator.pushNamed(context, LOGIN);
                       },
-                      color: Colors.red),
+                      color: Colors.red[800]),
                 ),
               ],
             ),

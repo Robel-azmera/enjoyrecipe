@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "910296394034",
+    "project_id": "recepiapp-c7128",
+    "storage_bucket": "recepiapp-c7128.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910296394034:android:d175eecfb32df47498cf2b",
+        "android_client_info": {
+          "package_name": "com.example.enjoyrecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910296394034-dc92j0d37qc37pr5md7luq4h9vt0arnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc_fwxXXOO3xdnNw5bwUB4bopSL72bKHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910296394034-dc92j0d37qc37pr5md7luq4h9vt0arnq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -113,6 +113,62 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.2.1"
+  firebase:
+    dependency: transitive
+    description:
+      name: firebase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.3.3"
+  firebase_analytics:
+    dependency: "direct main"
+    description:
+      name: firebase_analytics
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.16"
+  firebase_analytics_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_analytics_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
+  firebase_analytics_web:
+    dependency: transitive
+    description:
+      name: firebase_analytics_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
+  firebase_core:
+    dependency: "direct main"
+    description:
+      name: firebase_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.3"
+  firebase_core_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_core_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+  firebase_core_web:
+    dependency: transitive
+    description:
+      name: firebase_core_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1+1"
+  firebase_storage:
+    dependency: "direct main"
+    description:
+      name: firebase_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -132,13 +188,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.5"
-  flutter_plugin_android_lifecycle:
-    dependency: transitive
+  flutter_rating_bar:
+    dependency: "direct main"
     description:
-      name: flutter_plugin_android_lifecycle
+      name: flutter_rating_bar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.11"
+    version: "3.2.0+1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -177,20 +233,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.19"
+  image_cropper:
+    dependency: "direct main"
+    description:
+      name: image_cropper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   image_picker:
     dependency: "direct main"
     description:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+22"
-  image_picker_platform_interface:
-    dependency: transitive
-    description:
-      name: image_picker_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.6"
+    version: "0.6.0+17"
   intl:
     dependency: transitive
     description:
@@ -198,6 +254,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.2"
   matcher:
     dependency: transitive
     description:
@@ -303,6 +366,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.3"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.5"
   shared_preferences:
     dependency: "direct main"
     description:

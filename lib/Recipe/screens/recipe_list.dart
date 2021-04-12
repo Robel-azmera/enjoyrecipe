@@ -144,7 +144,8 @@ class _RecipeListState extends State<RecipeList> {
                           shape: BoxShape.circle,
                           image: new DecorationImage(
                             fit: BoxFit.fill,
-                            image: AssetImage("assets/images/Pizza-2.jpg"),
+                            image:
+                                NetworkImage("${Uri.parse(recipe[idx].image)}"),
                           ),
                         ),
                       ),

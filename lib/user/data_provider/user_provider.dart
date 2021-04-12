@@ -106,7 +106,8 @@ class UserProvider {
 
     if (response.statusCode == 200) {
       print(jsonDecode(response.body)["insert_Users"]['returning'][0]);
-      return User.fromJson(jsonDecode(response.body)["insert_Users"]['returning'][0]);
+      return User.fromJson(
+          jsonDecode(response.body)["insert_Users"]['returning'][0]);
     }
     throw Exception("Error creating user");
   }
