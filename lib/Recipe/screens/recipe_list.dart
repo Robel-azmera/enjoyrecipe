@@ -32,27 +32,39 @@ class _RecipeListState extends State<RecipeList> {
     initialname = fullname[0];
 
     return Scaffold(
+      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       drawer: Drawer(
         child: SafeArea(
             child: ListView(
           children: [
             Container(
+              height: 150,
+              color: Color.fromRGBO(58, 66, 86, 0.9),
               child: ListTile(
                 leading: CircleAvatar(
+                  backgroundColor: Colors.teal,
                   child: Text(
                     "$initialname",
-                    style: TextStyle(color: Colors.black),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
                   ), //assets/images/rob.JPG
                 ),
                 title: Text(
                   "$fullname",
-                  style: TextStyle(color: Colors.black, fontSize: 18.0),
+                  style: TextStyle(color: Colors.white, fontSize: 18.0),
                 ),
                 subtitle: Text(
                   "$email",
-                  style: TextStyle(color: Colors.black, fontSize: 12.0),
+                  style: TextStyle(color: Colors.white, fontSize: 12.0),
                 ),
               ),
+            ),
+            Divider(
+              height: 1,
+              thickness: 1,
             ),
             new Container(
               height: 800,
@@ -60,7 +72,10 @@ class _RecipeListState extends State<RecipeList> {
               child: new Column(
                 children: [
                   ListTile(
-                      leading: Icon(Icons.person),
+                      leading: Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
                       title: Text(
                         'Account Info',
                         style: TextStyle(
@@ -73,12 +88,11 @@ class _RecipeListState extends State<RecipeList> {
                             MaterialPageRoute(
                                 builder: (context) => ProfilePage()));
                       }),
-                  Divider(
-                    height: 1,
-                    thickness: 1,
-                  ),
                   ListTile(
-                      leading: Icon(Icons.exit_to_app_sharp),
+                      leading: Icon(
+                        Icons.exit_to_app_sharp,
+                        color: Colors.white,
+                      ),
                       title: Text(
                         'SignOut',
                         style: TextStyle(
@@ -97,7 +111,6 @@ class _RecipeListState extends State<RecipeList> {
           ],
         )),
       ),
-      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       appBar: topAppBar,
       bottomNavigationBar: makeTheBottom(context),
       body: BlocBuilder<RecipeBloc, RecipeState>(
