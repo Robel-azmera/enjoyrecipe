@@ -360,7 +360,7 @@ class _AddUpdateRecipeState extends State<AddUpdateRecipe> {
                                   label: Text("Upload"),
                                   icon: Icon(
                                     Icons.cloud_upload,
-                                    color: Colors.white60,
+                                    color: Colors.white70,
                                   ),
                                   onPressed: () {
                                     imageURL =

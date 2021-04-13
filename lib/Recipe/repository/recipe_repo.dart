@@ -20,6 +20,10 @@ class RecipeRepository {
     await dataProvider.updateRecipe(recipe);
   }
 
+  Future<void> updateRatingRecipe(Recipe recipe) async {
+    await dataProvider.updateRatingRecipe(recipe);
+  }
+
   Future<void> deleteRecipe(int id) async {
     await dataProvider.deleteRecipe(id);
   }

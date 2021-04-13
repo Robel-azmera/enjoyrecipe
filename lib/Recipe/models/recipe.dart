@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +12,11 @@ class Recipe extends Equatable {
     @required this.image,
     @required this.instructions,
     @required this.recipeName,
+    this.rating,
   });
 
   final int id;
+  final double rating;
   final String calories;
   final String image;
   final String recipeName;
@@ -21,12 +25,13 @@ class Recipe extends Equatable {
 
   @override
   List<Object> get props =>
-      [id, calories, image, recipeName, causions, instructions];
+      [id, calories, image, recipeName, causions, instructions, rating];
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
     return Recipe(
       id: json['id'],
       calories: json['calories'],
+      rating: json['rating'],
       image: json['image'],
       recipeName: json['name'],
       causions: json['causions'],

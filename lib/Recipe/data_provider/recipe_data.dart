@@ -98,4 +98,28 @@ class RecipeDataProvider {
       throw Exception('Failed to update Recipe . . . !');
     }
   }
+
+  Future<void> updateRatingRecipe(Recipe recipe) async {
+    final http.Response response = await httpClient.put(
+      '$baseURL/api/rest/update/recipe',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-hasura-admin-secret':
+            'gaiZAFZVjJ6tYXbl9ueMkhr3s7vpCO1yl5snWkfE9gKpWY8BlNahekMKNAxoCrZQ'
+      },
+      body: jsonEncode(<String, dynamic>{
+        'rating': recipe.rating,
+        'id': recipe.id,
+        'name': recipe.recipeName,
+        'calories': recipe.calories,
+        'causions': recipe.causions,
+        'image': recipe.image,
+        'instructions': recipe.instructions,
+      }),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update Recipe . . . !');
+    }
+  }
 }

@@ -43,6 +43,16 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
         yield RecipeOperationFailure();
       }
     }
+    if (event is RecipeRatingUpdate) {
+      try {
+        await dataRepository.updateRatingRecipe(event.recipe);
+        final recipe = await dataRepository.getRecipies();
+        yield RecipiesLoadSuccess(recipe);
+      } catch (_) {
+        // print(i); debug
+        yield RecipeOperationFailure();
+      }
+    }
 
     if (event is RecipeDelete) {
       try {

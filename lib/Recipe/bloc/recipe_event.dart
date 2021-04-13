@@ -36,6 +36,18 @@ class RecipeUpdate extends RecipeEvent {
   String toString() => 'Recipe Updated {Recipe: $recipe}';
 }
 
+class RecipeRatingUpdate extends RecipeEvent {
+  final Recipe recipe;
+
+  const RecipeRatingUpdate(this.recipe);
+
+  @override
+  List<Object> get props => [recipe];
+
+  @override
+  String toString() => 'Recipe Updated {Recipe: $recipe}';
+}
+
 class RecipeDelete extends RecipeEvent {
   final Recipe recipe;
 
