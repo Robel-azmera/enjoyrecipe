@@ -22,12 +22,14 @@ class RecipeDetail extends StatefulWidget {
 }
 
 class _RecipeDetailState extends State<RecipeDetail> {
-  double rating = 4.5;
+  // double rating = 4.5;
 
   bool isnull = false;
+  double rating;
 
   @override
   Widget build(BuildContext context) {
+    rating = widget.recipe.rating.toDouble();
     return Scaffold(
       backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       appBar: AppBar(
@@ -82,10 +84,11 @@ class _RecipeDetailState extends State<RecipeDetail> {
                 child: Row(
                   children: [
                     RatingBar.builder(
+                      // initialRating: rating,
                       initialRating: rating,
                       minRating: 0,
                       direction: Axis.horizontal,
-                      allowHalfRating: true,
+                      allowHalfRating: false,
                       itemCount: 5,
                       itemPadding: EdgeInsets.symmetric(horizontal: 3.0),
                       itemBuilder: (context, _) => Icon(

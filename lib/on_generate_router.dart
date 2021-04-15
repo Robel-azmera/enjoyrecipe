@@ -1,5 +1,6 @@
 import 'package:enjoyrecipe/Recipe/recipe.dart';
 import 'package:enjoyrecipe/Recipe/screens/recipe_arg.dart';
+import 'package:enjoyrecipe/Recipe/screens/recipe_category.dart';
 import 'package:enjoyrecipe/Recipe/screens/recipe_detail.dart';
 import 'package:enjoyrecipe/user/screens/login.dart';
 import 'package:enjoyrecipe/user/screens/profile.dart';
@@ -20,6 +21,8 @@ class OnGenerateRouter {
       return MaterialPageRoute(builder: (context) => ProfilePage());
     } else if (settings.name == RECIPE_LIST) {
       return MaterialPageRoute(builder: (context) => RecipeList());
+    } else if (settings.name == RECIPE_CATEGORY) {
+      return MaterialPageRoute(builder: (context) => RecipeCategory());
     } else if (settings.name == RECIPE_DETAIL) {
       Recipe recipe = settings.arguments;
       return MaterialPageRoute(

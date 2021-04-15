@@ -22,6 +22,7 @@ class RecipeDataProvider {
       },
       body: jsonEncode(<String, dynamic>{
         // 'id': recipe.id,
+        // "rating": recipe.rating,
         "name": recipe.recipeName,
         "calories": recipe.calories,
         "causions": recipe.causions,
@@ -30,7 +31,6 @@ class RecipeDataProvider {
       }),
     );
 
-    // print(response.body);
     if (response.statusCode == 200) {
       return Recipe.fromJson(
           jsonDecode(response.body)["insert_recipe"]["returning"][0]);

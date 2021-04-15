@@ -385,10 +385,11 @@ class _AddUpdateRecipeState extends State<AddUpdateRecipe> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                   child: ElevatedButton.icon(
-                    onPressed: () {
+                    onPressed: () async {
                       final form = _formKey.currentState;
                       if (form.validate()) {
                         form.save();
+
                         final RecipeEvent event = widget.args.edit
                             ? RecipeUpdate(
                                 Recipe(

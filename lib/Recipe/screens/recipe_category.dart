@@ -12,14 +12,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class RecipeList extends StatefulWidget {
+class RecipeCategory extends StatefulWidget {
   static const routeName = '/recipies';
 
   @override
-  _RecipeListState createState() => _RecipeListState();
+  _RecipeCategoryState createState() => _RecipeCategoryState();
 }
 
-class _RecipeListState extends State<RecipeList> {
+class _RecipeCategoryState extends State<RecipeCategory> {
   String email = "";
   String fullname = "";
   String initialname = "";

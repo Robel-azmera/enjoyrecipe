@@ -12,11 +12,11 @@ class Recipe extends Equatable {
     @required this.image,
     @required this.instructions,
     @required this.recipeName,
-    @required this.rating,
+    this.rating,
   });
 
   final int id;
-  final double rating;
+  final int rating;
   final String calories;
   final String image;
   final String recipeName;
