@@ -37,6 +37,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   firebase_core: ^0.5.0
   firebase_storage: ^4.0.0
+  progress_state_button: "^1.0.2"
   image_cropper: 1.0.2
   flutter_rating_bar: ^3.1.0
   firebase_analytics: ^5.0.6

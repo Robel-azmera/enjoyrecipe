@@ -5,6 +5,18 @@ abstract class RecipeEvent extends Equatable {
   const RecipeEvent();
 }
 
+class CheckRecipe extends RecipeEvent {
+  final List<Recipe> recipe;
+
+  const CheckRecipe(this.recipe);
+
+  @override
+  List<Object> get props => [recipe];
+
+  @override
+  String toString() => 'Recipe Created {Recipe: $recipe}';
+}
+
 class RecipeLoad extends RecipeEvent {
   const RecipeLoad();
 

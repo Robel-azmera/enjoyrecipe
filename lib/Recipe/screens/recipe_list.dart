@@ -10,6 +10,7 @@ import 'package:enjoyrecipe/user/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RecipeList extends StatefulWidget {
   static const routeName = '/recipies';
@@ -22,6 +23,7 @@ class _RecipeListState extends State<RecipeList> {
   String email = "";
   String fullname = "";
   String initialname = "";
+
   @override
   Widget build(BuildContext context) {
     UserSuccessfullySignedIn userState =
@@ -44,7 +46,7 @@ class _RecipeListState extends State<RecipeList> {
                 leading: CircleAvatar(
                   backgroundColor: Colors.teal,
                   child: Text(
-                    "$initialname",
+                    "$initialname".toUpperCase(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
@@ -111,99 +113,176 @@ class _RecipeListState extends State<RecipeList> {
           ],
         )),
       ),
-      appBar: topAppBar,
-      bottomNavigationBar: makeTheBottom(context),
+      appBar: AppBar(
+        elevation: 0.1,
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Enjoy',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.teal[300]),
+            ),
+            Text(
+              'Recipe',
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).pushNamed(AddUpdateRecipe.routeName,
+                  arguments: RecipeArgument(edit: false));
+            },
+          )
+        ],
+      ),
+      // bottomNavigationBar: makeTheBottom(context),
       body: BlocBuilder<RecipeBloc, RecipeState>(
         builder: (_, state) {
           if (state is RecipeOperationFailure) {
             return Center(
-              child: Text(
-                'No Description Added',
-                style: TextStyle(color: Colors.black),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text(
+                      'Add Recipies',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.white70,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(AddUpdateRecipe.routeName,
+                          arguments: RecipeArgument(edit: false));
+                    },
+                  )
+                ],
               ),
             );
           }
 
           if (state is RecipiesLoadSuccess) {
             final recipe = state.recipies;
-            // print(parties[0].description);///debug
             return ListView.builder(
-              padding: EdgeInsets.only(right: 7, bottom: 10),
+              // padding: EdgeInsets.only(bottom: 10),
               itemCount: recipe.length,
               itemBuilder: (_, idx) => Card(
                 color: Color.fromRGBO(58, 66, 86, 1.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      contentPadding: EdgeInsets.only(bottom: 20),
-                      leading: new Container(
-                        width: 70.0,
-                        height: 190.0,
-                        decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image:
-                                NetworkImage("${Uri.parse(recipe[idx].image)}"),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 23),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      GestureDetector(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(40.0),
+                                child: Image.network(
+                                  "${Uri.parse(recipe[idx].image)}",
+                                  fit: BoxFit.fill,
+                                  height: 250,
+                                  width: 350,
+                                ),
+                              ),
+                              Text(
+                                "${recipe[idx].recipeName}",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              RatingBar.builder(
+                                itemSize: 15,
+                                initialRating: 3,
+                                maxRating: 5,
+                                minRating: 0,
+                                unratedColor: Colors.white,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 3.0),
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                // onRatingUpdate: (rate) {
+                                //   setState(() {
+                                //     // rating = rate;
+                                //   });
+                                //   // print(rating);
+                                // },
+                              ),
+                              Text(
+                                "Calories: ${recipe[idx].calories}",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white60,
+                                ),
+                              ),
+                              Text(
+                                "By: $fullname",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white60,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ),
-                      title: Text(
-                        '${recipe[idx].recipeName}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                            fontSize: 19),
-                      ),
-                      subtitle: Text(
-                        'Calorie: ${recipe[idx].calories}',
-                        style: TextStyle(color: Colors.white54, fontSize: 14),
-                      ),
-                      onTap: () => Navigator.of(context).pushNamed(
-                          RecipeDetail.routeName,
-                          arguments: recipe[idx]),
-                    ),
-                    // ButtonBar(
-                    //   children: <Widget>[
-                    //     FlatButton(
-                    //       child: const Text(
-                    //         'Details',
-                    //         style: TextStyle(color: Colors.teal),
-                    //       ),
-                    //       onPressed: () {/* ... */},
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
+                          onTap: () => {
+                                print(recipe[idx].rating),
+                                Navigator.of(context).pushNamed(
+                                    RecipeDetail.routeName,
+                                    arguments: recipe[idx]),
+                              })
+                      // ListTile(
+                      //   contentPadding: EdgeInsets.only(bottom: 20),
+                      //   leading: new Container(
+                      //     width: 70.0,
+                      //     height: 190.0,
+                      //     decoration: new BoxDecoration(
+                      //       shape: BoxShape.circle,
+                      //       image: new DecorationImage(
+                      //         fit: BoxFit.fill,
+                      //         image:
+                      //             NetworkImage("${Uri.parse(recipe[idx].image)}"),
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   title: Text(
+                      //     '${recipe[idx].recipeName}',
+                      //     style: TextStyle(
+                      //         fontWeight: FontWeight.w500,
+                      //         color: Colors.white,
+                      //         fontSize: 19),
+                      //   ),
+                      //   subtitle: Text(
+                      //     'Calorie: ${recipe[idx].calories}',
+                      //     style: TextStyle(color: Colors.white54, fontSize: 14),
+                      //   ),
+                      //   onTap: () => Navigator.of(context).pushNamed(
+                      //       RecipeDetail.routeName,
+                      //       arguments: recipe[idx]),
+                      // ),
+                    ],
+                  ),
                 ),
               ),
-              // itemBuilder: (_, idx) => ListTile(
-              //   leading: new Container(
-              //     width: 70.0,
-              //     height: 190.0,
-              //     decoration: new BoxDecoration(
-              //       shape: BoxShape.circle,
-              //       image: new DecorationImage(
-              //         fit: BoxFit.fill,
-              //         image: AssetImage("assets/images/Pizza-2.jpg"),
-              //       ),
-              //     ),
-              //   ),
-              //   title: Text(
-              //     '${recipe[idx].recipeName}',
-              //     style: TextStyle(
-              //         fontWeight: FontWeight.bold,
-              //         color: Colors.teal[100],
-              //         fontSize: 19),
-              //   ),
-              //   subtitle: Text(
-              //     'Calorie: ${recipe[idx].calories}',
-              //     style: TextStyle(color: Colors.white54, fontSize: 15),
-              //   ),
-              //   onTap: () => Navigator.of(context)
-              //       .pushNamed(RecipeDetail.routeName, arguments: recipe[idx]),
-              // ),
             );
           }
 
@@ -260,10 +339,10 @@ final topAppBar = AppBar(
   elevation: 0.1,
   backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
   title: Text('Recipes'),
-  // actions: <Widget>[
-  //   IconButton(
-  //     icon: Icon(Icons.list),
-  //     onPressed: () {},
-  //   )
-  // ],
+  actions: <Widget>[
+    IconButton(
+      icon: Icon(Icons.add),
+      onPressed: () {},
+    )
+  ],
 );

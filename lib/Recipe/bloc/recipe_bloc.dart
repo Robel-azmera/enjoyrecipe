@@ -1,4 +1,5 @@
 import 'package:enjoyrecipe/Recipe/bloc/bloc.dart';
+import 'package:enjoyrecipe/Recipe/models/models.dart';
 import 'package:enjoyrecipe/Recipe/repository/recipe_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,10 +9,20 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
 
   RecipeBloc({@required this.dataRepository})
       : assert(dataRepository != null),
+        // super(RecipeLoading());
         super(RecipeLoading());
 
   @override
   Stream<RecipeState> mapEventToState(RecipeEvent event) async* {
+    if (event is CheckRecipe) {
+      final isempt = await dataRepository.isEmpty(event.recipe);
+      if (isempt == true) {
+        yield RecipeLoading();
+      } else {
+        final recipies = await dataRepository.getRecipies();
+        RecipiesLoadSuccess(recipies);
+      }
+    }
     if (event is RecipeLoad) {
       yield RecipeLoading();
       try {

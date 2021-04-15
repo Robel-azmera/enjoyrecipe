@@ -17,6 +17,7 @@ class SignupContainer extends StatefulWidget {
 class _SignupContainerState extends State<SignupContainer> {
   String email = '';
   String password = '';
+  String confirmPassword = '';
   String fullname = '';
   bool visible = false;
 
@@ -213,6 +214,60 @@ class _SignupContainerState extends State<SignupContainer> {
                   onChanged: (value) => password = value,
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 8.0, left: 8.0, right: 8.0, bottom: 25),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value.isEmpty) return "Password can't be empty";
+                    return null;
+                  },
+                  style: kTextFormFieldStyle,
+                  obscureText: visible ? true : false,
+                  decoration: InputDecoration(
+                    hintText: 'confirm password',
+                    labelText: 'confirm password',
+                    hintStyle: TextStyle(color: Colors.white70),
+                    labelStyle: TextStyle(color: Colors.white70),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Colors.white70,
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: toggleVisibility,
+                      color: Colors.white70,
+                      icon: visible
+                          ? Icon(
+                              Icons.visibility_off,
+                            )
+                          : Icon(
+                              Icons.visibility,
+                            ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: BorderSide(color: Colors.white70),
+                      gapPadding: 10,
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22),
+                      borderSide: BorderSide(color: Colors.red),
+                      gapPadding: 10,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      borderSide: BorderSide(color: Colors.white),
+                      gapPadding: 10,
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22),
+                      borderSide: BorderSide(color: Colors.red),
+                      gapPadding: 10,
+                    ),
+                  ),
+                  onChanged: (value) => confirmPassword = value,
+                ),
+              ),
               CheckboxListTile(
                 value: true,
                 activeColor: Colors.teal,
@@ -250,17 +305,22 @@ class _SignupContainerState extends State<SignupContainer> {
                   onPressed: () {
                     final form = _formKey.currentState;
                     if (form.validate()) {
-                      int random = Random().nextInt(1000);
-                      UserEvent event = UserSignUp(
-                        User(
-                          email: email,
-                          password: password,
-                          fullName: fullname,
-                          // phone: "$random",
-                        ),
-                      );
+                      if (confirmPassword == password) {
+                        int random = Random().nextInt(1000);
+                        UserEvent event = UserSignUp(
+                          User(
+                            email: email,
+                            password: password,
+                            fullName: fullname,
+                            // phone: "$random",
+                          ),
+                        );
 
-                      BlocProvider.of<UserBloc>(context).add(event);
+                        BlocProvider.of<UserBloc>(context).add(event);
+                      } else {
+                        Scaffold.of(context).showSnackBar(
+                            SnackBar(content: Text("Passwords must match")));
+                      }
                     }
                   },
                   color: Colors.teal,

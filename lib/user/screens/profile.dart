@@ -22,6 +22,13 @@ class _ProfilePageState extends State<ProfilePage> {
   String password = "";
   String newpass = "";
   String oldpass = "";
+  bool visible = false;
+
+  void toggleVisibility() {
+    setState(() {
+      visible = !visible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,90 +101,118 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                //   child: Form(
-                //     child: TextFormField(
-                //       validator: (value) {
-                //         if (value.isEmpty) return "Can't be left empty";
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0, vertical: 20.0),
+                  child: Form(
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) return "Can't be left empty";
 
-                //         return null;
-                //       },
-                //       initialValue: password,
-                //       style:
-                //           kTextFormFieldStyle.copyWith(color: Colors.white54),
-                //       decoration: kInputDecoration.copyWith(
-                //           hintText: 'Enter Old password',
-                //           labelText: "Old Password",
-                //           focusColor: Colors.teal,
-                //           enabledBorder: OutlineInputBorder(
-                //             borderSide:
-                //                 BorderSide(color: Colors.teal, width: 1.0),
-                //             borderRadius:
-                //                 BorderRadius.all(Radius.circular(32.0)),
-                //           ),
-                //           focusedBorder: OutlineInputBorder(
-                //             borderSide:
-                //                 BorderSide(color: Colors.teal, width: 2.0),
-                //             borderRadius:
-                //                 BorderRadius.all(Radius.circular(32.0)),
-                //           ),
-                //           prefixIcon: Icon(
-                //             Icons.mail,
-                //             color: Colors.teal,
-                //           )),
-                //       // onChanged: (value) => email = value,
-                //       onChanged: (value) => oldpass = value,
-                //     ),
-                //   ),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                //   child: Form(
-                //     child: TextFormField(
-                //       validator: (value) {
-                //         if (value.isEmpty) return "Can't be left empty";
-                //         return null;
-                //       },
-                //       // initialValue: email,
-                //       style:
-                //           kTextFormFieldStyle.copyWith(color: Colors.black54),
-                //       decoration: kInputDecoration.copyWith(
-                //           labelText: "New password",
-                //           hintText: 'Enter New Password',
-                //           focusColor: Colors.teal,
-                //           enabledBorder: OutlineInputBorder(
-                //             borderSide:
-                //                 BorderSide(color: Colors.teal, width: 1.0),
-                //             borderRadius:
-                //                 BorderRadius.all(Radius.circular(32.0)),
-                //           ),
-                //           focusedBorder: OutlineInputBorder(
-                //             borderSide:
-                //                 BorderSide(color: Colors.teal, width: 2.0),
-                //             borderRadius:
-                //                 BorderRadius.all(Radius.circular(32.0)),
-                //           ),
-                //           prefixIcon: Icon(
-                //             Icons.mail,
-                //             color: Colors.teal,
-                //           )),
-                //       onChanged: (value) => newpass = value,
-                //     ),
-                //   ),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                //   child: RoundedButton(
-                //       text: 'UPDATE',
-                //       onPressed: () {
-                //         user.password = newpass;
-                //         BlocProvider.of<UserBloc>(context).add(
-                //           UserUpdate(user),
-                //         );
-                //       },
-                //       color: Colors.teal[700]),
-                // ),
+                        return null;
+                      },
+                      initialValue: password,
+                      style:
+                          kTextFormFieldStyle.copyWith(color: Colors.white54),
+                      obscureText: visible ? true : false,
+
+                      decoration: kInputDecoration.copyWith(
+                          hintText: 'Enter Old password',
+                          labelText: "Old Password",
+                          focusColor: Colors.teal,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white70, width: 1.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32.0)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 2.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32.0)),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: toggleVisibility,
+                            color: Colors.white70,
+                            icon: visible
+                                ? Icon(
+                                    Icons.visibility_off,
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                  ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.white70,
+                          )),
+                      // onChanged: (value) => email = value,
+                      onChanged: (value) => oldpass = value,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Form(
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value.isEmpty) return "Can't be left empty";
+                        return null;
+                      },
+                      // initialValue: email,
+                      style:
+                          kTextFormFieldStyle.copyWith(color: Colors.white54),
+                      obscureText: visible ? true : false,
+
+                      decoration: kInputDecoration.copyWith(
+                          labelText: "New password",
+                          hintText: 'Enter New Password',
+                          hintStyle: TextStyle(color: Colors.white54),
+                          focusColor: Colors.teal,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white70, width: 1.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32.0)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 2.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(32.0)),
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: toggleVisibility,
+                            color: Colors.white70,
+                            icon: visible
+                                ? Icon(
+                                    Icons.visibility_off,
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                  ),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.white70,
+                          )),
+                      onChanged: (value) => newpass = value,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: RoundedButton(
+                      text: 'UPDATE',
+                      onPressed: () {
+                        user.password = newpass;
+                        BlocProvider.of<UserBloc>(context).add(
+                          UserUpdate(user),
+                        );
+                      },
+                      color: Colors.teal[700]),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: RoundedButton(

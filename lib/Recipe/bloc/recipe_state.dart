@@ -10,6 +10,8 @@ class RecipeState extends Equatable {
 
 class RecipeLoading extends RecipeState {}
 
+class NoRecipe extends RecipeState {}
+
 class RecipiesLoadSuccess extends RecipeState {
   final List<Recipe> recipies;
 

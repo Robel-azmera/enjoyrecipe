@@ -1,10 +1,16 @@
+import 'dart:math';
+
+import 'package:enjoyrecipe/Recipe/bloc/bloc.dart';
 import 'package:enjoyrecipe/constants.dart';
 import 'package:enjoyrecipe/user/bloc/bloc.dart';
 import 'package:enjoyrecipe/user/screens/signup.dart';
+import 'package:enjoyrecipe/widgets/progress_button.dart';
 import 'package:enjoyrecipe/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
+import 'package:progress_state_button/iconed_button.dart';
+import 'package:progress_state_button/progress_button.dart';
 
 class LoginContainer extends StatefulWidget {
   @override
@@ -16,6 +22,8 @@ class _LoginContainerState extends State<LoginContainer> {
   String email = '';
   String password = '';
 
+  int _state;
+
   final _formKey = GlobalKey<FormState>();
 
   void toggleVisibility() {
@@ -26,6 +34,12 @@ class _LoginContainerState extends State<LoginContainer> {
 
   @override
   Widget build(BuildContext context) {
+    // BlocBuilder<UserBloc, UserState>(
+    //   builder: (_, state) => {
+
+    //   },
+    // );
+
     return Form(
       key: _formKey,
       child: Padding(
@@ -107,7 +121,11 @@ class _LoginContainerState extends State<LoginContainer> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   validator: (value) {
-                    if (value.isEmpty) return "Password can't be left empty";
+                    if (value.isEmpty) {
+                      return "Password can't be left empty";
+                    } else if (value.length < 6) {
+                      return "Password Must be atleast 6";
+                    }
 
                     return null;
                   },

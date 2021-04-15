@@ -27,4 +27,13 @@ class RecipeRepository {
   Future<void> deleteRecipe(int id) async {
     await dataProvider.deleteRecipe(id);
   }
+
+  Future<bool> isEmpty(List<Recipe> recipe) async {
+    recipe = await dataProvider.getRecipies();
+    if (recipe == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
